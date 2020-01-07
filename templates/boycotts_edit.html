@@ -8,6 +8,10 @@
         <input type='hidden' name='_method' value='PUT'/>
             <!-- Add this line instead of all the form code -->
             {% include 'partials/boycotts_form.html' %}
+                <!-- Show Comments -->
+            <div>{% for comment in comments_collection %}
+            {% include 'partials/comment.html' %}
+            {% endfor %}</div>
             <!-- BUTTON -->
             <div class='form-group'>
                 <button class='btn btn-primary' type='submit'>Save boycott</button>

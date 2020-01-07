@@ -56,8 +56,8 @@ def boycotts_submit():
 def boycotts_show(boycott_id):
     """Show a single boycott."""
     boycott = boycotts_collection.find_one({"_id": ObjectId(boycott_id)})
-    comments = comments_collection.find({"_id": ObjectId(boycott_id)})
-    return render_template('boycotts_show.html', boycott=boycott, comments=comments)
+    comments = comments_collection.find({"boycott_id": ObjectId(boycott_id)})
+    return render_template('boycotts_show.html', boycott=boycott, comments_collection=comments)
 
 @app.route('/boycotts/<boycott_id>/edit')
 def boycotts_edit(boycott_id):
@@ -110,6 +110,25 @@ def comments_new():
     print(comment)
     comment_id = comments_collection.insert_one(comment).inserted_id
     return redirect(url_for('boycotts_show', boycott_id=request.form.get('boycott_id')))
+
+@app.route('/boycotts/<comment_id>', methods=['POST'])
+def comments_update(comment_id):
+    """Submit an edited comment."""
+    link_ids = request.form.get('link_ids').split()
+    links = link_url_creator(link_ids)
+    # create our updated boycott
+    updated_comment = {
+        'title': request.form.get('title'),
+        'content': request.form.get('content'),
+        'boycott_id': ObjectId(request.form.get('boycott_id')),
+        'created_at': datetime.now()
+    }
+    # set the former comment to the new one we just updated/edited
+    comments_collection.update_one(
+        {'_id': ObjectId(boycott_id)},
+        {'$set': updated_comment})
+    # take us back to the boycott's show page
+    return redirect(url_for('boycotts_show', boycott_id=boycott_id))
 
 @app.route('/boycotts/comments/<comment_id>', methods=['POST'])
 def comments_delete(comment_id):

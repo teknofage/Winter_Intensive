@@ -17,15 +17,19 @@
     <!-- LINK IDS -->
     <div class='form-group'>
         <label for='boycott-link-ids'>Links</label><br>
-        <p class='text-muted'>Add the URLS of the links you want to include in your boycott. Separate with a new line.</p>
+        <p class='text-muted'>Add or update the URLS of the links you want to include in your boycott. Separate with a new line.</p>
         <textarea class='form-control' id='boycott-link-ids' name='link_ids' rows='10'>{{ "\n".join(boycott.link_ids) }}</textarea>
+    </div>
+    <div>
+            <!-- Show Comments -->
+    {% for comment in comments_collection %}
+    {% include 'partials/comment.html' %}
+    {% endfor %}
     </div>
 </fieldset>
 
 <!-- BUTTONS -->
-<!-- <p>
-        boycott Rating (1-5): <input type="text" name="rating" min="1" max="5">
-</p> -->
+
 <p>
     <button type='submit'>Save Boycott</button>
 </p>

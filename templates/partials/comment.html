@@ -4,6 +4,10 @@
     <div class='card-block'>
         <h4 class='card-title'>{{ comment.title }}</h4>
         <p class='card-text'>{{ comment.content }}</p>
+        <!-- Edit link -->
+        <!-- <p><form method='POST' action='/boycotts/comments/{{ comment._id }}'>
+            <a href="/comments/{{ comment._id }}/edit">Edit</a>
+        </form></p> -->
         <!-- Delete link -->
         <p><form method='POST' action='/boycotts/comments/{{ comment._id }}'>
             <button class='btn btn-link' type='submit'>Delete</button>
