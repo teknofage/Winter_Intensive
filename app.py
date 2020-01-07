@@ -45,9 +45,9 @@ def boycotts_submit():
     boycott = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        'time_frame': time_frame,
+        # 'time_frame': time_frame,
         'links': links,
-        'comments': int(request.form.get('comments'))
+        'comments': request.form.get('comments')
     }
     boycott_id = boycotts.insert_one(boycott).inserted_id
     return redirect(url_for('boycotts_show', boycott_id=boycott_id))
@@ -76,7 +76,7 @@ def boycotts_update(boycott_id):
         'description': request.form.get('description'),
         'links': links,
         'link_ids': link_ids,
-        'comments': int(request.form.get('comments'))
+        'comments': request.form.get('comments')
     }
     # set the former boycott to the new one we just updated/edited
     boycotts.update_one(
