@@ -5,14 +5,14 @@ import os
 from datetime import datetime
 
 # fix
-host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/')
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Boycott_Inc')
 client = MongoClient(host=host)
 db = client.Boycott_Inc
 boycotts_collection = db.boycotts
 links_collection = db.links
 comments_collection = db.comments
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 # fix
 def link_url_creator(id_lst):
@@ -45,7 +45,7 @@ def boycotts_submit():
     boycott = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        'time_frame': time_frame,
+        # 'time_frame': time_frame,
         'links': links,
         'comments': request.form.get('comments')
     }

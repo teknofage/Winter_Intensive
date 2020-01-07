@@ -1,0 +1,13 @@
+.links_list {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 150px;
+    overflow: hidden;
+}
+
+
+.links_list > a {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
