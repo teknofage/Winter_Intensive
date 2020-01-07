@@ -7,19 +7,20 @@ from datetime import datetime
 # fix
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/')
 client = MongoClient(host=host)
-db = client.get_default_database()
+db = client.Boycott_Inc
 boycotts = db.boycotts
+links = db.links
 comments = db.comments
 
 app = Flask(__name__)
 
 # fix
-# def link_url_creator(id_lst):
-#     links = []
-#     for link_id in id_lst:
-#         link = '' + link_id
-#         links.append(link)
-#     return links
+def link_url_creator(id_lst):
+    links = []
+    for link_id in id_lst:
+        link = '' + link_id
+        links.append(link)
+    return links
 
 @app.route('/')
 def boycotts_index():
@@ -45,7 +46,7 @@ def boycotts_submit():
         'title': request.form.get('title'),
         'description': request.form.get('description'),
         'time_frame': time_frame,
-        'links': links
+        'links': links,
         'comments': int(request.form.get('comments'))
     }
     boycott_id = boycotts.insert_one(boycott).inserted_id
@@ -74,7 +75,7 @@ def boycotts_update(boycott_id):
         'title': request.form.get('title'),
         'description': request.form.get('description'),
         'links': links,
-        'link_ids': link_ids
+        'link_ids': link_ids,
         'comments': int(request.form.get('comments'))
     }
     # set the former boycott to the new one we just updated/edited
@@ -101,7 +102,7 @@ def comments_new():
     comment = {
         'title': request.form.get('title'),
         'content': request.form.get('content'),
-        'boycott_id': ObjectId(request.form.get('boycott_id'))
+        'boycott_id': ObjectId(request.form.get('boycott_id')),
         'created_at': datetime.now()
     }
 

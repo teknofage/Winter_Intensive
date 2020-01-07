@@ -1,0 +1,36 @@
+<!-- templates/partials/boycotts_form.html -->
+
+<fieldset>
+    <legend>Edit boycott</legend>
+    <!-- TITLE -->
+    <div class='form-group'>
+        <label for='boycott-title'>Title</label><br>
+        <input class='form-control' id='boycott-title' type='text' name='title' value='{{ boycott.title }}'/>
+    </div>
+    >
+    <!-- DESCRIPTION -->
+    <div class='form-group'>
+        <label for='description'>Description</label><br>
+        <input class='form-control' id='description' type='text' name='description' value='{{ boycott.description }}' />
+    </div>
+    >
+    <!-- LINK IDS -->
+    <div class='form-group'>
+        <label for='boycott-link-ids'>Links</label><br>
+        <p class='text-muted'>Add the URLS of the links you want to include in your boycott. Separate with a new line.</p>
+        <textarea class='form-control' id='boycott-link-ids' name='link_ids' rows='10'>{{ "\n".join(boycott.link_ids) }}</textarea>
+    </div>
+</fieldset>
+
+<!-- BUTTONS -->
+<!-- <p>
+        boycott Rating (1-5): <input type="text" name="rating" min="1" max="5">
+</p> -->
+<p>
+    <button type='submit'>Save Boycott</button>
+</p>
+<p>
+    <input class="button" type="button" onclick="window.location.replace('/')" value="Cancel" />
+</p>
+<p>
+</p>
