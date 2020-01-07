@@ -8,9 +8,9 @@ from datetime import datetime
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/')
 client = MongoClient(host=host)
 db = client.Boycott_Inc
-boycotts = db.boycotts
-links = db.links
-comments = db.comments
+boycotts_collection = db.boycotts
+links_collection = db.links
+comments_collection = db.comments
 
 app = Flask(__name__)
 
@@ -25,7 +25,7 @@ def link_url_creator(id_lst):
 @app.route('/')
 def boycotts_index():
     """Show all boycotts."""
-    return render_template('boycotts_index.html', boycotts=boycotts.find())
+    return render_template('boycotts_index.html', boycotts=boycotts_collection.find())
     
     
 @app.route('/boycotts/new')
@@ -45,24 +45,25 @@ def boycotts_submit():
     boycott = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        # 'time_frame': time_frame,
+        'time_frame': time_frame,
         'links': links,
         'comments': request.form.get('comments')
     }
-    boycott_id = boycotts.insert_one(boycott).inserted_id
+    boycott_id = boycotts_collection.insert_one(boycott).inserted_id
     return redirect(url_for('boycotts_show', boycott_id=boycott_id))
 
 @app.route('/boycotts/<boycott_id>', methods= ['GET'])
 def boycotts_show(boycott_id):
     """Show a single boycott."""
-    boycott = boycotts.find_one({"_id": ObjectId(boycott_id)})
-    return render_template('boycotts_show.html', boycott=boycott)
+    boycott = boycotts_collection.find_one({"_id": ObjectId(boycott_id)})
+    comments = comments_collection.find({"_id": ObjectId(boycott_id)})
+    return render_template('boycotts_show.html', boycott=boycott, comments=comments)
 
 @app.route('/boycotts/<boycott_id>/edit')
 def boycotts_edit(boycott_id):
     """Show the edit form for a boycott."""
     # Add the title parameter here
-    boycott = boycotts.find_one({"_id": ObjectId(boycott_id)})
+    boycott = boycotts_collection.find_one({"_id": ObjectId(boycott_id)})
     return render_template('boycotts_edit.html', boycott=boycott, title="Edit Boycott")
 
 @app.route('/boycotts/<boycott_id>', methods=['POST'])
@@ -79,7 +80,7 @@ def boycotts_update(boycott_id):
         'comments': request.form.get('comments')
     }
     # set the former boycott to the new one we just updated/edited
-    boycotts.update_one(
+    boycotts_collection.update_one(
         {'_id': ObjectId(boycott_id)},
         {'$set': updated_boycott})
     # take us back to the boycott's show page
@@ -88,7 +89,7 @@ def boycotts_update(boycott_id):
 @app.route('/boycotts/<boycott_id>/delete', methods=['POST'])
 def boycotts_delete(boycott_id):
     """Delete one boycott."""
-    boycotts.delete_one({'_id': ObjectId(boycott_id)})
+    boycotts_collection.delete_one({'_id': ObjectId(boycott_id)})
     return redirect(url_for("boycotts_index"))
 
 # Add this header to distinguish Comment routes from Boycott routes
@@ -107,14 +108,14 @@ def comments_new():
     }
 
     print(comment)
-    comment_id = comments.insert_one(comment).inserted_id
+    comment_id = comments_collection.insert_one(comment).inserted_id
     return redirect(url_for('boycotts_show', boycott_id=request.form.get('boycott_id')))
 
 @app.route('/boycotts/comments/<comment_id>', methods=['POST'])
 def comments_delete(comment_id):
     """Action to delete a comment."""
-    comment = comments.find_one({'_id': ObjectId(comment_id)})
-    comments.delete_one({'_id': ObjectId(comment_id)})
+    comment = comments_collection.find_one({'_id': ObjectId(comment_id)})
+    comments_collection.delete_one({'_id': ObjectId(comment_id)})
     return redirect(url_for('boycotts_show', boycott_id=comment.get('boycott_id')))    
 
 

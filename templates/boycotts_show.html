@@ -1,0 +1,35 @@
+<!-- templates/boycotts_show.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<a href='/'>Back to Home</a>
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+        <h1>{{ boycott.title }}</h1>
+        <h2>{{ boycott.description }}</h2>
+        {% for link in boycott.links %}
+            <div class="card"><div class="card-body"></div>
+            <iframe width='420' height='315' src='{{ link }}'></iframe>
+        </div></div>
+            {% endfor %}
+    <p>
+    </br>
+    <a href="/boycotts/{{ boycott._id }}/edit">Edit</a>
+    <p><form method='POST' action='/boycotts/{{ boycott._id }}/delete'>
+        <input type='hidden' name='_method' value='DELETE'>
+        <button class='btn btn-primary' type='submit'>Delete</button>
+    </form></p>
+    </p>
+    <hr>
+
+    {% include 'partials/comment_form.html' %}
+
+    <hr>
+
+    <!-- Show Comments -->
+    {% for comment in comments %}
+        {% include 'partials/comment.html' %}
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

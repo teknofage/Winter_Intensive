@@ -1,0 +1,18 @@
+<!-- templates/boycotts_edit.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='row'>
+    <div class='col-sm-6 col-sm-offset-3'>
+    <form method='POST' action='/boycotts/{{boycott._id}}'>
+        <input type='hidden' name='_method' value='PUT'/>
+            <!-- Add this line instead of all the form code -->
+            {% include 'partials/boycotts_form.html' %}
+            <!-- BUTTON -->
+            <div class='form-group'>
+                <button class='btn btn-primary' type='submit'>Save boycott</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
