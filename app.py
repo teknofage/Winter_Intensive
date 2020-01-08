@@ -45,7 +45,7 @@ def boycotts_submit():
     boycott = {
         'title': request.form.get('title'),
         'description': request.form.get('description'),
-        # 'time_frame': time_frame,
+        'time_frame': datetime.now(),
         'links': links,
         'comments': request.form.get('comments')
     }
