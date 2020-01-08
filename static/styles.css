@@ -11,3 +11,8 @@
     white-space: nowrap;
 
 }
+
+.useful_sites_container {
+    padding-left: 5em;
+    width: 500px;
+}

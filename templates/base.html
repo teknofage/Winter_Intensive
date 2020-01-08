@@ -32,13 +32,33 @@
 
     <!-- add in the navbar -->
     {% include 'partials/navbar.html' %}
+
+    <!-- HERO -->
+    <div class="jumbotron text-center hero-background-img">
+        <div class="hero-text">
+        <h1>Boycott Inc.</h1>
+        <p class="lead">Helping YOU decide where, and when, to boycott something</p>
+        <a href="#" class="btn btn-primary">Learn More</a>
+    </div>
+    </div>
+    <div class= "container"></div>
+    </div>
 <!-- Add the container class below  -->
 <div class='container'>
     {% block content %}
         BODY CONTENT GOES HERE
     {% endblock %}
 </div>
-
+<div class="useful_sites_container">
+    <div class='col-md-6 mb-md-0 mb-3'>
+    <h4>Here is a list of useful and supporting websites and information:</h4>                
+    
+    https://www.buycott.com/
+    https://www.ethicalconsumer.org/ethicalcampaigns/boycotts
+    https://www.investopedia.com/terms/a/anti-boycott-regulations.asp
+    https://www.nytimes.com/2017/12/05/business/patagonia-trump-utah.html
+</div>
+</div>
     <!-- Footer -->
     <footer class='page-footer font-small blue pt-4'>
             <div class='container-fluid text-center'>
