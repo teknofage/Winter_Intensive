@@ -137,6 +137,24 @@ def comments_delete(comment_id):
     comments_collection.delete_one({'_id': ObjectId(comment_id)})
     return redirect(url_for('boycotts_show', boycott_id=comment.get('boycott_id')))    
 
+# Other Routes
+
+@app.route('/contact_us')
+def contact_us():
+    """Show contact form"""
+    return render_template("contact_us.html", contact_us=contact_us)
+
+@app.route('/login')
+def login():
+    """Show login"""
+    return render_template("login.html", login=login)
+
+
+@app.route('/registration')
+def registration():
+    """Show registration"""
+    return render_template("registration.html", registration=registration)
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
