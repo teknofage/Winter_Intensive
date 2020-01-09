@@ -7,7 +7,9 @@ from datetime import datetime
 # fix
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Boycott_Inc')
 client = MongoClient(host=host)
-db = client.Boycott_Inc
+# client = MongoClient(host=f'{host}?retryWrites=false')
+# db = client.Boycott_Inc
+db = client.get_default_database()
 boycotts_collection = db.boycotts
 links_collection = db.links
 comments_collection = db.comments
