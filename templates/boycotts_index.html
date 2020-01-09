@@ -3,12 +3,14 @@
 
 {% block content %}
 <h1>Boycotts</h1>
-<h5>Below is a list of companies and entities which have been subitted for boycotting, and the reasons users have given for doing so. You can add another boycott, or add supporting comments and evidence to an existing boycott.</h5>
+<h5>Boycotts Inc. provides a social hub where people can share their concerns about and reactions to corporate and governmental behaviour, in the form of boycotts.</h5> 
+    
+    <h6>Below is a list of companies and entities which have been subitted for boycotting, and the reasons users have given for doing so. You can add another boycott, or add supporting comments and evidence to an existing boycott.</h6>
 
 <!-- <a href='/boycotts/new'>New boycott</a> -->
 <div class='row'>
     {% for boycott in boycotts %}
-    <div class='col-sm-3'>
+    <div class='col-sm-12'>
             <div class="card">
                     <div class="card-body">
                         <h2><a href='/boycotts/{{ boycott._id }}'>{{ boycott.title }}</a></h2>
