@@ -16,3 +16,34 @@
     padding-left: 5em;
     width: 500px;
 }
+
+.hero-background-img {
+    position: relative;
+    background: rgba(0, 0, 0, 0.3); /* If our image is bright, we can tone it down with this darker overlay */
+    padding-top:200px;  
+    padding-bottom:200px;
+    background-image: url("images/Boycott_Hero_Image.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 2px 4px white;
+    text-decoration: solid;
+    font-size: xx-large !important;
+}
+
+.hero-background-img:after  {
+    content: "";
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.hero-text > h1{
+    font-size: 4rem;
+}
