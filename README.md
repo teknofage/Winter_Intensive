@@ -13,15 +13,13 @@ ___
 
 ### Table of Contents
 
-<ul>
-<li><a href="#Rationale">Rationale</a>
-<li><a href="#Description">Description</a>
-<li><a href="#Getting Started">Getting Started</a> 
-<li><a href="#Benefits">Benefits</a>
-<li><a href="#Installation">Installation</a>
-<li><a href="#Useful Links">Useful Links</a>
-<li><a href="#Developer">Developer</a>
-</ul>
+* [Rationale](#Rationale)
+* [Description](#Description)
+* [Getting Started](#Getting_Started)
+* [Benefits](#Benefits)
+* [Useful Links](#Useful_Links)
+* [Developer](#Developer)
+
 
 #### Rationale
 
@@ -35,6 +33,11 @@ Rather than just share your latest gripes on social media, use a centralized hub
 
 Upload and edit information about your chosen boycotts. Leave comments and related links.
 
+#### Getting Started
+Website: [Boycott Inc](https://boycott-inc-whmc.herokuapp.com)
+
+Explore the site, learn about and comment on existing concerns and boycotts, and even add your own.
+
 #### Benefits
 
 * **Teach:** Share information about chosen boycotts with other people around the world.
@@ -45,15 +48,6 @@ Upload and edit information about your chosen boycotts. Leave comments and relat
 
 * **Evolve:** Harness the power of collective efforts to bring petitions and claims against even the largest offenders. Don't let them get way with it.
 
-#### Getting Started
-
-
-#### Installation
-
-<!-- Code Blocks -->
-```python
-npm install
-```
 
 #### Useful Links
 [Buycott](https://www.buycott.com "Shop Smart")
